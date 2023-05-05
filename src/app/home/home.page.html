@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      محاسبه قسط
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,12 +9,81 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+      <ion-title size="large">محاسبه قسط</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-input label="مبلغ کل"
+                     inputmode="numeric"
+                     labelPlacement="stacked" [clearInput]="true"
+                     [(ngModel)]="totalPrice"
+                     [value]="totalPrice">
+          </ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-input label="درصد سود"
+                     inputmode="numeric"
+                     labelPlacement="stacked" [clearInput]="true"
+                     [(ngModel)]="profitPercents"
+                     [value]="profitPercents">
+          </ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-input label="تعداد اقساط"
+                     inputmode="numeric"
+                     labelPlacement="stacked" [clearInput]="true"
+                     [(ngModel)]="paymentCounts"
+                     [value]="paymentCounts">
+          </ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-input label="پرداخت اولیه"
+                     inputmode="numeric"
+                     labelPlacement="stacked" [clearInput]="true"
+                     [(ngModel)]="firstPayment"
+                     [value]="firstPayment">
+          </ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-button (click)="calc()" expand="block">محاسبه</ion-button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="monthlyPayment">
+      <ion-col size="4">
+        <ion-label>
+          مبلغ هر قسط:
+        </ion-label>
+      </ion-col>
+
+      <ion-col size="8">
+        <ion-label id="result">
+          {{monthlyPayment | number: '1.0-0'}} تومان
+        </ion-label>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
